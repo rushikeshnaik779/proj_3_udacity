@@ -18,7 +18,7 @@ row = {
 }
 
 response = requests.post(
-    url='https://udacity-rushikesh-project-3.herokuapp.com/inference',
+    url='https://uda-3-proj-app.herokuapp.com/inference',
     json=row
 )
 
