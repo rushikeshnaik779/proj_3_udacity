@@ -50,8 +50,8 @@ async def predict_income(inputrow: InputData):
     prediction = api_output(row_dict, model_path, cat_features)
 
     return {"Salary class": prediction}
-
+# comment out  when you deploy on the heroku
 #import uvicorn
-# commenting out 
+
 #if __name__ == "__main__":
 #    uvicorn.run(app, host="0.0.0.0", port=8000)
