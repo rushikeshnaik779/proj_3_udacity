@@ -21,7 +21,7 @@ def get_cat_features():
 ]   
     return cat_features
 
-    
+
 # Add code to load in the data.
 def load_data(path):
     df = pd.read_csv(path, index_col=None)
@@ -36,9 +36,9 @@ def load_data(path):
 
 
 
-def train_model(train_data, model_path, cat_features, label_column='salary'):
+def train_model_main(train_data, model_path, cat_features, label_column='salary'):
 
-
+    three = "/Users/rushikeshnaik/Desktop/Project3_udacity/proj_3_udacity/model/"
 # Proces the test data with the process_data function.
     X_train, y_train, encoder, lb = process_data(
         train_data, categorical_features=cat_features, label="salary", training=True
@@ -48,9 +48,13 @@ def train_model(train_data, model_path, cat_features, label_column='salary'):
     model = train_model(X_train, y_train)
 
     joblib.dump((model, encoder,lb), model_path)
+    # also dumping into three files 
+    joblib.dump(model,three+"rf_model")
+    joblib.dump(encoder, three+"encoder")
+    joblib.dump(lb, three+"lb")
 
 
-def inference(test_data, model_path, cat_features, label_column='salary'):
+def inference_main(test_data, model_path, cat_features, label_column='salary'):
     # load the model from `model_path`
     model, encoder, lb = joblib.load(model_path)
 
