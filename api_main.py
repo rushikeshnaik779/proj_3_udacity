@@ -32,9 +32,9 @@ class InputData(BaseModel):
 
 if "DYNO" in os.environ and os.path.isdir(".dvc"):
     os.system("dvc config core.no_scm true")
-    if os.system("dvc pull -q") != 0:
+    if os.system("dvc pull") != 0:
         exit("dvc pull failed")
-    os.system("rm -rf .dvc .apt/usr/lib/dvc")
+    os.system("rm -r .dvc .apt/usr/lib/dvc")
 
 
 
