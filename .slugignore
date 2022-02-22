@@ -1,0 +1,9 @@
+*.ipynb
+*.md
+checking_api.py
+test_slice.py
+main.py
+slice_output.txt
+/test
+/screenshots
+/.github
