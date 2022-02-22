@@ -38,7 +38,7 @@ def load_data(path):
 
 def train_model_main(train_data, model_path, cat_features, label_column='salary'):
 
-    three = "/Users/rushikeshnaik/Desktop/Project3_udacity/proj_3_udacity/model/"
+    three = "../model/"
 # Proces the test data with the process_data function.
     X_train, y_train, encoder, lb = process_data(
         train_data, categorical_features=cat_features, label="salary", training=True
@@ -100,6 +100,6 @@ def api_output(row_dict, model_path, cat_features):
     row_transformed = np.concatenate([y_conts, y_cat], axis=1)
 
     # get inference from model
-    preds = inference(model=model, X=row_transformed)
-
-    return '>50K' if preds[0] else '<=50K'
+    #preds = inference(model=model, X=row_transformed)
+    return 0
+    #return '>50K' if preds[0] else '<=50K'
