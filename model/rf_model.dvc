@@ -1,0 +1,4 @@
+outs:
+- md5: 19a4619e91c7b9467ff356a1eb5a199b
+  size: 22112832
+  path: rf_model
