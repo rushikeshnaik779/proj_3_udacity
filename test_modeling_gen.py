@@ -1,9 +1,17 @@
 import numpy as np
 import logging
-
+import pytest 
 logging.basicConfig(level=logging.INFO,
                     format="%(asctime)-15s %(message)s")
 logger = logging.getLogger()
+
+@pytest.fixture
+def data():
+    df = pd.read_csv("data/cleaned_data.csv")
+    return df
+
+
+
 
 def test_columns_names(data):
     expected_columns = [
