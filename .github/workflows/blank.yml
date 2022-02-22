@@ -32,5 +32,6 @@ jobs:
         run: dvc pull -r s3-remote      
       - name: Run Flake8
         run: flake8
+        run: flake8 --disable-noqa
       - name: Run pytest
         run: pytest
