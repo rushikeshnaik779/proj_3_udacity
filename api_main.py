@@ -32,7 +32,6 @@ class InputData(BaseModel):
 
 if "DYNO" in os.environ and os.path.isdir(".dvc"):
     os.system("dvc config core.no_scm true")
-    os.system("dvc remote add s3-remote s3://dvc-proj")
     if os.system("dvc pull -q") != 0:
         exit("dvc pull failed")
     os.system("rm -rf .dvc .apt/usr/lib/dvc")
