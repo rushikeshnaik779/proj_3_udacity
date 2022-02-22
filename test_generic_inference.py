@@ -7,7 +7,7 @@ client = TestClient(app)
 def test_home():
     r = client.get('/')
     assert r.status_code==200
-    assert r.json()=={"Hello":"Welcome RUshikesh"}
+    assert r.json()=={"Hello":"Rushikesh This is your home page"}
 
 
 

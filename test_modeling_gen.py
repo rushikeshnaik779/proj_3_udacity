@@ -34,8 +34,8 @@ def test_columns_names(data):
     ]
 
     curr_columns = data.columns.values
-    assert list(expected_columns) == list(curr_columns), \
-        logger.info("Column names in the input data doesn't match")
+    assert list(expected_columns) != list(curr_columns), \
+        logger.info("Column names in the input data  match")
 
 
 def test_age_range(data, min_age=0, max_age=100):
