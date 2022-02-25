@@ -30,7 +30,7 @@ def test_1_predict_income():
     }
     r = client.post('/inference', json=row1)
     assert r.status_code == 200
-    assert r.json() == {'Salary class': 0}
+    assert r.json() == {"Salary class": '<=50K'}
 
 
 def test_2_predict_income():
@@ -52,4 +52,4 @@ def test_2_predict_income():
     }
     r = client.post('/inference', json=row2)
     assert r.status_code == 200
-    assert r.json() == {'Salary class': 0}
+    assert r.json() == {"Salary class": '>50K'}

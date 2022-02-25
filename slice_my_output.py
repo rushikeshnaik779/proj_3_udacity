@@ -1,6 +1,9 @@
 import pandas as pd
+import joblib
 # Add the necessary imports for the starter code.
 from starter.train_model import inference_main, get_cat_features
+from starter.ml.data import process_data
+from starter.ml.model import compute_model_metrics, inference
 
 def create_data_slice(data_path, col_to_slice, value_to_replace=None):
 
@@ -22,20 +25,28 @@ def create_data_slice(data_path, col_to_slice, value_to_replace=None):
 
 if __name__ == '__main__':
     CAT_FEATURES = get_cat_features()
+    data_path = "data/cleaned_data.csv"
+    trainval = pd.read_csv(data_path)
+    model_path = "model/RF_with_encoder_lb.pkl"
+    cat_features = get_cat_features()
+    model, encoder, lb = joblib.load(model_path)
+    slice_values = []
+    for cat in cat_features:
+            unique_values = trainval[cat].unique()
+            for value in  unique_values:
+                X, y, encoder, lb = process_data(
+                    trainval[trainval[cat]==value], categorical_features=cat_features, label="salary", training=False, encoder=encoder, lb=lb,
+                )
+                preds = inference(model=model, X=X)
+                precision, recall, fbeta = compute_model_metrics(y, preds)
+                line = "[%s->%s] Precision: %s " \
+                   "Recall: %s FBeta: %s" % (cat, value, precision, recall, fbeta)
+                slice_values.append(line)
 
-    col_to_slice = 'race'
-    value_to_replace = 'Black'  # education: ['Bachelors, 'Masters', 'HS-grad']
 
-    print("performance on sliced column\t", col_to_slice, value_to_replace)
-    sliced_data = create_data_slice('/Users/rushikeshnaik/Desktop/Project3_udacity/proj_3_udacity/data/cleaned_data.csv',
-                                    col_to_slice,
-                                    value_to_replace)
+    
 
-    precision, recall, fbeta = inference_main(sliced_data,
-                                               "/Users/rushikeshnaik/Desktop/Project3_udacity/proj_3_udacity/model/RF_with_encoder_lb.pkl",
-                                               CAT_FEATURES)
 
-    with open('slice_output.txt', 'a') as f:
-        result = f"""\n{'-'*50}\nperformance on sliced column -- {col_to_slice} -- {value_to_replace}\n{'-'*50} \
-            \nPrecision:\t{precision}\nRecall:\t{recall}\nF-beta score:\t{fbeta}\n"""
-        f.write(result)
+    with open('slice_output.txt', 'w') as out:
+        for slice_value in slice_values:
+            out.write(slice_value + '\n')

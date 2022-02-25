@@ -46,12 +46,13 @@ def home():
 @app.post('/inference')
 async def predict_income(inputrow: InputData):
     row_dict = jsonable_encoder(inputrow)
+    print(row_dict)
     model_path = 'model/RF_with_encoder_lb.pkl'
     prediction = api_output(row_dict, model_path, cat_features)
 
     return {"Salary class": prediction}
 # comment out  when you deploy on the heroku
-#import uvicorn
+import uvicorn
 
-#if __name__ == "__main__":
-#    uvicorn.run(app, host="0.0.0.0", port=8000)
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)

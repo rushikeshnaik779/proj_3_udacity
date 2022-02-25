@@ -45,6 +45,7 @@ def process_data(
     """
 
     if label is not None:
+        print('Printing',X)
         y = X[label]
         X = X.drop([label], axis=1)
     else:
