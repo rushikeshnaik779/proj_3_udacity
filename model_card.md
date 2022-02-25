@@ -24,3 +24,9 @@ Dataset contains data related race, gender and origin country. This will drive t
 ## Caveats and Recommendations
 Try changing the hyperparameters of Randomforest for better result 
 Retraining needed after certain period of time
+
+
+# Computed Model Metrics Score
+- Fbeta = 0.6013462976813762
+- Precision = 0.7133984028393966
+- recall = 0.519715578539108
