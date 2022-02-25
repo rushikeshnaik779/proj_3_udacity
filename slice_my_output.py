@@ -5,22 +5,6 @@ from starter.train_model import inference_main, get_cat_features
 from starter.ml.data import process_data
 from starter.ml.model import compute_model_metrics, inference
 
-def create_data_slice(data_path, col_to_slice, value_to_replace=None):
-
-    # Add code to load in the data.
-    if value_to_replace:
-        input_df = pd.read_csv(data_path, index_col=None)
-        input_df[col_to_slice] = input_df[col_to_slice].apply(
-            lambda x: str(value_to_replace)
-        )
-
-    else:
-        input_df = pd.read_csv(data_path, index_col=None)
-        input_df[col_to_slice] = input_df[col_to_slice].apply(
-            lambda x: input_df[col_to_slice][0]
-        )
-
-    return input_df
 
 
 if __name__ == '__main__':
